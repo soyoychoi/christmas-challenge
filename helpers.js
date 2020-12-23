@@ -1,9 +1,9 @@
 // Helper function to read files
 const fs = require("fs");
 
-const readFile = (fileName) => {
+const readFile = (fileName, splitBy="\n") => {
     const content = fs.readFileSync(`inputs/${fileName}`, { encoding: "utf-8" });
-    return content.split("\n").filter((string) => string.trim() !== "");
+    return content.split(splitBy).filter((string) => string.trim() !== "");
 }
 
 // Day 2
@@ -28,7 +28,19 @@ const formatPasswordPolicy = (data) => {
     }
 }
 
+// Day 4
+const formatPassport = (passport) => {
+    const passportInfo = passport.split("\n").join(" ").split(" ").filter((str) => str.trim() !== "");
+    const passportObject = {};
+    passportInfo.map((info) => {
+        const fieldInfo = info.split(":");
+        passportObject[fieldInfo[0]] = fieldInfo[1];
+    });
+    return passportObject;
+}
+
 module.exports = {
     readFile,
-    formatPasswordPolicy
+    formatPasswordPolicy,
+    formatPassport
 }
