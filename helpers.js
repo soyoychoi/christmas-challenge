@@ -34,7 +34,7 @@ const formatPassport = (passport) => {
     const passportObject = {};
     passportInfo.map((info) => {
         const fieldInfo = info.split(":");
-        passportObject[fieldInfo[0]] = fieldInfo[1];
+        passportObject[fieldInfo[0].trim()] = fieldInfo[1].trim();
     });
     return passportObject;
 }
